@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajijul Borewell & Pump Service</title>
+    <style>
+        /* --- General Styles --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            background-color: #f9f9f9;
+        }
+        
+        /* --- BRAND COLORS --- */
+        :root {
+            --brand-blue: #004e92;      
+            --brand-light-blue: #0074e4; 
+            --brand-accent: #fca311;    
+            --white: #ffffff;
+            --whatsapp-green: #25d366;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--brand-blue);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+        }
+        .nav-links {
+            margin-top: 5px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--brand-accent);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(0, 78, 146, 0.85), rgba(0, 78, 146, 0.85)), url('https://source.unsplash.com/1600x900/?drilling,water,construction'); 
+            background-size: cover;
+            background-position: center;
+            min-height: 80vh;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+        }
+        .size-badge {
+            background-color: var(--brand-accent);
+            color: black;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 5px;
+        }
+        .hero-btn {
+            background-color: white;
+            color: var(--brand-blue);
+            padding: 15px 35px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+        .hero-btn:hover {
+            transform: scale(1.05);
+            background-color: #eee;
+        }
+
+        /* --- Section Titles --- */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-title h2 {
+            color: var(--brand-blue);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        .section-title div {
+            width: 80px;
+            height: 4px;
+            background-color: var(--brand-accent);
+            margin: 0 auto;
+        }
+
+        /* --- Services --- */
+        .section {
+            padding: 60px 20px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+            border-bottom: 5px solid var(--brand-blue);
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* --- PRICE & CALCULATOR SECTION --- */
+        .price-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .price-box {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        th {
+            color: var(--brand-blue);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .price-highlight {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        /* CALCULATOR Styles */
+        .calculator-box {
+            flex: 1;
+            min-width: 300px;
+            background: var(--brand-blue);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,78,146,0.3);
+            text-align: center;
+        }
+        .calculator-box h3 {
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+        .calc-input, .calc-select {
+            width: 80%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        .calc-btn {
+            background-color: var(--brand-accent);
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 80%;
+            margin-top: 10px;
+        }
+        .calc-btn:hover {
+            background-color: #ffb703;
+        }
+        #calcResult {
+            margin-top: 25px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        /* --- BOOKING FORM --- */
+        .booking-section {
+            background-color: white;
+        }
+        .booking-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fdfdfd;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--brand-blue);
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .whatsapp-btn {
+            width: 100%;
+            background-color: var(--whatsapp-green);
+            color: white;
+            padding: 15px;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .whatsapp-btn:hover {
+            background-color: #1ebc57;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .contact-links p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .contact-links a {
+            color: var(--brand-accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">AJIJUL BOREWELL</div>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#pricing">Calculator</a>
+                <a href="#book-now">Book Now</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>AJIJUL BOREWELL & PUMP SERVICE</h1>
+        <p>Expert in Deep Boring, Soil Testing & Pump Repairs.</p>
+        
+        <div style="margin-bottom: 20px;">
+          <span class="size-badge">3 Inch</span>
+            <span class="size-badge">5 Inch</span>
+            <span class="size-badge">8 Inch</span>
+            <span class="size-badge">12 Inch</span>
+        </div>
+
+        <a href="#pricing" class="hero-btn">Get a Quote</a>
+    </section>
+
+    <section id="services" class="section">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <div></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">🌊</span>
+                <h3>Deep Borewell</h3>
+                <p>Heavy duty rigs available for <strong>5", 8", and 12"</strong> diameter boring.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🔧</span>
+                <h3>Pump Repair</h3>
+                <p>Submersible pump installation, motor rewinding, and starter repair.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🏗️</span>
+                <h3>Pile Foundation</h3>
+                <p>Strong piling for building foundations to ensure safety.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="section" style="background-color: #f1f5f9;">
+        <div class="section-title">
+            <h2>Pricing & Estimation</h2>
+            <div></div>
+        </div>
+
+        <div class="price-container">
+            <div class="price-box">
+                <h3>📋 Rate Card</h3>
+                <table>
+                    <tr>
+                        <th>Service / Size</th>
+                        <th>Price</th>
+                    </tr>
+                    <tr>
+                        <td><strong>5 Inch Bore</strong></td>
+                        <td class="price-highlight">₹200 / per foot</td>
+                    </tr>
+                    <tr>
+                        <td><strong>8 Inch & 12 Inch</strong></td>
+                        <td class="price-highlight">Call for Quote</td>
+                    </tr>
+                    <tr>
+                        <td>Pump Installation</td>
+                        <td>₹2,500 - ₹3,500</td>
+                    </tr>
+                    <tr>
+                        <td>Pump Repair</td>
+                        <td>₹5000 - ₹9000</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                    *Prices may vary based on soil condition (Stone/Clay).
+                </p>
+            </div>
+
+            <div class="calculator-box">
+                <h3>🧮 Cost Calculator</h3>
+                <p>Select your bore size and depth.</p>
+                
+                <select id="sizeInput" class="calc-select">
+                    <option value="5">5 Inch (Standard)</option>
+                    <option value="8">8 Inch (Heavy)</option>
+                    <option value="12">12 Inch (Industrial)</option>
+                </select>
+
+                <input type="number" id="feetInput" class="calc-input" placeholder="Enter Depth (Feet)">
+                
+                <button class="calc-btn" onclick="calculateCost()">Calculate Total</button>
+
+                <div id="calcResult"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="book-now" class="section booking-section">
+        <div class="section-title">
+            <h2>📅 Book Online</h2>
+            <div></div>
+            <p style="margin-top: 10px;">Send details directly to our WhatsApp.</p>
+        </div>
+        
+        <div class="booking-container">
+            <form onsubmit="sendToWhatsapp(); return false;">
+                <div class="form-group">
+                    <label>Your Name:</label>
+                    <input type="text" id="name" placeholder="Enter full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Mobile Number:</label>
+                    <input type="tel" id="phone" placeholder="Your contact number" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Site Address / Village:</label>
+                    <textarea id="address" rows="3" placeholder="Village name, Street, etc." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Service / Size:</label>
+                    <select id="serviceType">
+                      <option value="3 Inch Borewell">New Borewell - 3 Inch</option>
+                        <option value="5 Inch Borewell">New Borewell - 5 Inch</option>
+                        <option value="8 Inch Borewell">New Borewell - 8 Inch</option>
+                        <option value="12 Inch Borewell">New Borewell - 12 Inch</option>
+                        <option value="Pump Repair">Pump Repair</option>
+                        <option value="Soil Test">Soil Testing</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="whatsapp-btn">
+                    Confirm & Send on WhatsApp
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-links">
+            <p>📞 Call: <a href="tel:+919564739469">+91 95647 39469</a></p>
+            <p>📞 Call: <a href="tel:+919064250323">+91 90642 50323</a></p>
+            <p>📧 Email: <a href="mailto:paikajijul61@gmail.com">paikajijul61@gmail.com</a></p>
+            <p>📍 Location: West Bengal</p>
+        </div>
+        <p style="margin-top:30px; font-size: 0.8rem; color: #555;">&copy; 2024 AJIJUL BOREWELL & PUMP SERVICE</p>
+    </footer>
+
+    <script>
+        // --- CALCULATOR FUNCTION ---
+        function calculateCost() {
+            var feet = document.getElementById('feetInput').value;
+            var size = document.getElementById('sizeInput').value;
+            var resultBox = document.getElementById('calcResult');
+
+            resultBox.style.display = "block";
+
+            if (feet > 0) {
+                if (size === "5") {
+                    // 5 inch calculation (200 per foot)
+                    var totalCost = feet * 200;
+                    var formattedCost = totalCost.toLocaleString('en-IN');
+                    resultBox.innerHTML = "Estimated Cost: ₹" + formattedCost;
+                    resultBox.style.color = "#fff";
+                } else {
+                    // 8 inch or 12 inch calculation
+                    resultBox.innerHTML = "For " + size + " inch, please call us for a custom rate.";
+                    resultBox.style.color = "#ffeb3b"; // Yellow text for warning
+                }
+            } else {
+                resultBox.innerHTML = "Please enter depth in feet.";
+                resultBox.style.color = "#ffcccc";
+            }
+        }
+
+        // --- WHATSAPP BOOKING FUNCTION ---
+        function sendToWhatsapp() {
+            var name = document.getElementById('name').value;
+            var phone = document.getElementById('phone').value;
+            var address = document.getElementById('address').value;
+            var service = document.getElementById('serviceType').value;
+
+            // Your WhatsApp Number
+            var myPhoneNumber = "919064250323"; 
+
+            var message = 
+                "*New Inquiry from Website* %0A%0A" +
+                "👤 *Name:* " + name + "%0A" +
+                "📞 *Phone:* " + phone + "%0A" +
+                "📍 *Address:* " + address + "%0A" +
+                "🛠 *Service:* " + service;
+
+            var url = "https://wa.me/" + myPhoneNumber + "?text=" + message;
+            window.open(url, '_blank');
+        }
+    </script>
+
+</body>
+</html>
